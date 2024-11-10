@@ -190,13 +190,16 @@ class Colors:
         
         # Standard colors
         print("\nStandard Foreground Colors:")
-        for color in ['BLACK', 'RED', 'GREEN', 'YELLOW', 'BLUE', 'MAGENTA', 'CYAN', 'WHITE']:
+        for color in ['BLACK', 'RED', 'GREEN', 'YELLOW', 
+                      'BLUE', 'MAGENTA', 'CYAN', 'WHITE']:
             print(f"{getattr(Colors, color)}This is {color}{Colors.RESET}")
         
         # Bright colors
         print("\nBright Foreground Colors:")
-        for color in ['BRIGHT_BLACK', 'BRIGHT_RED', 'BRIGHT_GREEN', 'BRIGHT_YELLOW', 
-                     'BRIGHT_BLUE', 'BRIGHT_MAGENTA', 'BRIGHT_CYAN', 'BRIGHT_WHITE']:
+        for color in ['BRIGHT_BLACK', 'BRIGHT_RED', 
+                      'BRIGHT_GREEN', 'BRIGHT_YELLOW', 
+                     'BRIGHT_BLUE', 'BRIGHT_MAGENTA', 
+                     'BRIGHT_CYAN', 'BRIGHT_WHITE']:
             print(f"{getattr(Colors, color)}This is {color}{Colors.RESET}")
         
         # Background colors
@@ -416,7 +419,8 @@ class UIPanel:
         """Update the info section with new text"""
         self.sections['info'].content = info_text
 
-    def get_section_bounds(self, section_name: str) -> Tuple[int, int, int, int]:
+    def get_section_bounds(self, 
+                           section_name: str) -> Tuple[int, int, int, int]:
         """Get the bounds (x1, y1, x2, y2) of a section"""
         section = self.sections.get(section_name)
         if not section:
@@ -432,7 +436,10 @@ class MenuItem:
     """
     Represents a menu item with a text label, action, and color.
     """
-    def __init__(self, text: str, action: str, color: str = Colors.BRIGHT_WHITE):
+    def __init__(self, 
+                 text: str, 
+                 action: str, 
+                 color: str = Colors.BRIGHT_WHITE):
         self.text = text
         self.action = action
         self.color = color
@@ -842,7 +849,7 @@ class GameObject:
                     # Set regrowth time to 1 hour from now
                     current_time = (game_state.time_hours 
                                     * 60 + game_state.time_minutes)
-                    self.regrowth_time = current_time + 60  # 60 minutes = 1 hour
+                    self.regrowth_time = current_time + 60 
                     game_state.set_status(f"Got {wood_amount} wood! Tree will regrow in 1 hour.", 
                                           Colors.BRIGHT_GREEN, 45)
                     return True
@@ -1438,8 +1445,11 @@ VILLAGE_MAP = [
     "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMGGGGGGG~~~~~~~~~GGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
 ]
 
-def calculate_camera_offset(player_pos: List[int], map_width: int, map_height: int,
-                          screen_width: int, screen_height: int) -> Tuple[int, int]:
+def calculate_camera_offset(player_pos: List[int], 
+                            map_width: int, 
+                            map_height: int,
+                          screen_width: int, 
+                          screen_height: int) -> Tuple[int, int]:
     """Calculate camera offset to keep player centered."""
     # Calculate the ideal camera position (player at center)
     camera_x = player_pos[0] - (screen_width - 4) // 2  # -4 for borders
@@ -1451,7 +1461,8 @@ def calculate_camera_offset(player_pos: List[int], map_width: int, map_height: i
 
     return -camera_x, -camera_y
 
-def draw_village_map(screen: ScreenBuffer, game_state: EnhancedGameState):
+def draw_village_map(screen: ScreenBuffer, 
+                     game_state: EnhancedGameState):
     """Draw the visible portion of village map with the player centered."""
     map_height = len(VILLAGE_MAP)
     map_width = len(VILLAGE_MAP[0])
